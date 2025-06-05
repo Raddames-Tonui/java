@@ -180,6 +180,7 @@ try {
 ```
 
 ### Sample Files for Testing
+Add below to `resource` directory.
 
 **test.xsd**
 
@@ -212,7 +213,7 @@ Output:
 
 ## Step 5: Package into Runnable JAR
 
-### 1. Create manifest.txt
+### 1. Create `manifest.txt` file into the root directory
 
 ```
 Main-Class: Main
@@ -223,13 +224,26 @@ Main-Class: Main
 ### 2. Compile Java File
 
 ```bash
-javac Main.java                             # Compile the Main.java source file
+# Compile the Main.java source file
+javac -d out src/Main.java         
+```
+
+`javac` — Java compiler
+
+`-d` out — put compiled .class files into the out/ directory
+
+`src/Main.java` — path to the Java source file
+
+```bash
+# Run the file
+java -cp out Main
 ```
 
 ### 3. Package the JAR
 
 ```bash
-jar cfm validator.jar manifest.txt Main.class   # Create a JAR file with manifest and compiled class
+# Create a JAR file with manifest and compiled class
+jar cfm validator.jar manifest.txt -C out/ .
 ```
 
 ### 4. Run the JAR
