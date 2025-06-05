@@ -168,7 +168,8 @@ public class CalculatorApp {
 ```
 
 ## JARS
-[JAR DOCUMENTATION](./JARS.md)
+Find Fat and Thin Jars Documentation in below link.
+[Jar Documentation](./JARS.md)
 
 ## 📝 Notes
 
@@ -181,5 +182,5 @@ public class CalculatorApp {
   * The file contains a `package` declaration.
   * It's placed in a directory structure matching that package name.
 
-**Author:** *Your Name*
+**Author:** *Raddames Tonui*
 **Date:** *2025-06-05*
