@@ -1,4 +1,4 @@
-class FullTimeEmployee extends Employees {
+class FullTimeEmployee  extends Employees{
     private double basicSalary;
     private double benefits;
 
@@ -9,7 +9,7 @@ class FullTimeEmployee extends Employees {
     }
 
     @Override
-    public void calculateSalary() {
+    public void calculateSalary(){
         netSalary = basicSalary + benefits;
         System.out.println("Full-Time Employee Salary: " + netSalary);
     }

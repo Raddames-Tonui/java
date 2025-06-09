@@ -1,17 +1,23 @@
-abstract class Employees {
-    protected int employeeNumber;
-    protected String employeeName;
-    protected double netSalary;
+// Abstact class Employees
+public abstract class Employees {
+    int employeeNumber;
+    String employeeName;
+    double netSalary;
 
-    public Employees(int employeeNumber, String employeeName) {
-        this.employeeNumber = employeeNumber;
+    // Constructor to initialize employee details
+    public Employees( int employeeNumber, String employeeName){
         this.employeeName = employeeName;
+        this.employeeNumber = employeeNumber;
     }
 
+    // Abstact method to calculate salary
     public abstract void calculateSalary();
 
-    public void displayEmployeeDetails() {
-        System.out.println("Employee Number: " + employeeNumber);
-        System.out.println("Employee Name: " + employeeName);
+    // Method to display employee details (Non abstract)
+    public void displayEmployeeDetails(){
+        System.out.println("Employee Number: "+ employeeNumber);
+        System.out.println("Employee Name: "+ employeeName);
     }
+
+    
 }
