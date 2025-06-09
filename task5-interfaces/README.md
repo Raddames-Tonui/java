@@ -56,10 +56,21 @@ Element: person
 * Command-line compilation included classpath reference to the JSON JAR:
 
   ```
-  javac -cp .:lib/json-20240303.jar *.java
-  java -cp .:lib/json-20240303.jar ProcessorTest
+  javac -d out -cp .:lib/json-20240303.jar *.java
   ```
+  `-d out`: outputs compiled .class files into the out directory, keeping source and binaries separate
 
+  `-cp .:lib/json-20240303.jar`: sets the classpath to current directory and JSON library JAR (use ; on Windows)
+
+  `*.java` : compiles all Java source files in the directory
+
+  ```
+  java -cp out:lib/json-20240303.jar ProcessorTest
+  ```
+  Runs ``ProcessorTest`` from compiled classes in out directory
+
+  Includes external JSON library in classpath for runtime access
+  
 ## Conclusion
 
 This task demonstrates effective use of interfaces to enforce a contract across multiple implementations, and how Java supports working with structured data formats using both native and third-party tools. It's foundational for modular and extensible application design.
