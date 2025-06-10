@@ -4,7 +4,6 @@ import model.Book;
 
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class BookService {
     private final List<Book> bookList = new ArrayList<>();
