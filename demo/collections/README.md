@@ -191,7 +191,7 @@ set.add("Apple");
 ---
 
 ## MAPS
-[Check on maps](./Map.md)
+[Check on maps](./maps/README.md)
 
 ## 📘 Conclusion
 
