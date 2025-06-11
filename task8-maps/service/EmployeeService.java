@@ -13,6 +13,7 @@ public class EmployeeService {
     // Map: Department -> List of Employees
     private final Map<String, List<Employee>> departmentEmployeeMap;
 
+    // Constructor
     public EmployeeService() {
         this.departmentEmployeeMap = new HashMap<>();
     }

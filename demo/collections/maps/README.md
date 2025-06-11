@@ -43,21 +43,19 @@ java.util.Map (interface)
 * Represents a **mapping of keys to values**
 * **Not** part of the `Collection` interface
 * Keys must be unique
+**Syntax:**
 
-### Key Methods
+```java
+Map<String, String> map = new HashMap<>();
+```
 
-| Method              | Description                           |
-| ------------------- | ------------------------------------- |
-| `put(K key, V val)` | Adds or updates a key-value pair      |
-| `get(Object key)`   | Returns value mapped to the key       |
-| `containsKey(key)`  | Checks if the key exists              |
-| `containsValue(v)`  | Checks if the value exists            |
-| `remove(key)`       | Removes the mapping for the key       |
-| `keySet()`          | Returns a `Set` view of the keys      |
-| `values()`          | Returns a `Collection` view of values |
-| `entrySet()`        | Returns a `Set` of key-value entries  |
 
----
+### Common Implementations:
+
+* `HashMap`: Unordered, fast performance
+* `TreeMap`: Sorted by key
+* `LinkedHashMap`: Maintains insertion order
+
 
 ### 🔸 HashMap
 
@@ -119,6 +117,19 @@ props.setProperty("app.name", "MyApp");
 props.getProperty("app.name");
 ```
 
+### Key Methods
+
+| Method              | Description                           |
+| ------------------- | ------------------------------------- |
+| `put(K key, V val)` | Adds or updates a key-value pair      |
+| `get(Object key)`   | Returns value mapped to the key       |
+| `containsKey(key)`  | Checks if the key exists              |
+| `containsValue(v)`  | Checks if the value exists            |
+| `remove(key)`       | Removes the mapping for the key       |
+| `keySet()`          | Returns a `Set` view of the keys      |
+| `values()`          | Returns a `Collection` view of values |
+| `entrySet()`        | Returns a `Set` of key-value entries  |
+
 ---
 
 ## 🧠 Map vs Collection
@@ -152,3 +163,6 @@ props.getProperty("app.name");
 * Avoid `Hashtable` in modern Java — prefer `ConcurrentHashMap` for thread-safe needs.
 
 Would you like to generate icons, export this for Canva, or add code samples for each method?
+
+
+
