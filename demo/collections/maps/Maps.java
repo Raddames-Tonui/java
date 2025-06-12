@@ -1,14 +1,56 @@
 import java.util.*;
 
-public class maps {
+public class Maps {
     public static void main(String[] args) {
-        mapDemo1();
+
+        System.out.println("-----------HASH MAP---------");
+        hashMapDemo();
+
+        System.out.println("\n-----LINKED HASH MAP---------");
+        linkedHashMap();
+
+
+        System.out.println("\n --------TREE MAP---------");
+        treeMapDemo();
+
+
+
+        // mapDemo1();
       
     }
 
-    public static void mapDemo(){
-          // Example usage of Map
-        Map<Integer, String> map = new HashMap<>();
+    public static void hashMapDemo(){
+        HashMap<Integer, String> names = new HashMap<>();
+        names.put(1, "Raddames");
+        names.put(2,"James");
+        names.put(3, "Hellen");
+        names.put( null, "billy");
+        names.put(67, null);
+        names.put(null, "Johny");
+        names.put(6, null);
+
+
+
+        System.out.println(names);
+        System.out.println(names.get(1));
+        System.out.println(names.containsKey(3));
+        System.out.println(names.containsValue("Hellen"));
+
+        names.replace(3, "Job");
+        names.replace(5,"buddy");
+        System.out.println(names);
+
+        names.put(2, "biggy");
+        names.putIfAbsent(1,"davy");
+        System.out.println(names);
+
+        names.putIfAbsent(65, "Yellow");
+        System.out.println(names);
+    }
+
+    public static void linkedHashMap(){
+  // Example usage of Map
+        LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
         
         // Adding elements to the map
         map.put(1, "Apple");
@@ -36,14 +78,14 @@ public class maps {
         }
     }
 
-    public static void mapDemo1(){
-        Map<String, String> student = new HashMap<>();
+    public static void treeMapDemo(){
+        Map<String, String> student = new TreeMap<>();
         
         // Adding elements to the map
         student.put("name", "Joe Doe");
         student.put("age", "20");
         student.put("major", "Computer Science");
-        student.put("year", "2nd Year");
+        student.put("year", "2ndYear");
 
         // Displaying the map
         System.out.println("Student details: "+ student);

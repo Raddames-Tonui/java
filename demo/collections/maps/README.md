@@ -57,7 +57,7 @@ Map<String, String> map = new HashMap<>();
 * `LinkedHashMap`: Maintains insertion order
 
 
-### 🔸 HashMap
+# 🔸a) HashMap
 
 * No ordering of keys
 * Allows one null key and multiple null values
@@ -70,7 +70,7 @@ map.put("Math", 95);
 map.get("Math"); // 95
 ```
 
-### 🔸 LinkedHashMap
+## 🔸 LinkedHashMap
 
 * Maintains insertion order
 * Slightly slower than `HashMap`
@@ -81,7 +81,7 @@ map.put("first", "Alpha");
 map.put("second", "Beta");
 ```
 
-### 🔸 TreeMap
+# 🔸 b) TreeMap
 
 * Sorted by natural order or a comparator
 * Does not allow null keys
@@ -93,8 +93,7 @@ Map<String, Integer> map = new TreeMap<>();
 map.put("C", 3);
 map.put("A", 1);
 ```
-
-### 🔸 Hashtable
+# 🔸 c) Hashtable
 
 * Legacy synchronized map
 * Slower due to thread safety
@@ -123,14 +122,16 @@ props.getProperty("app.name");
 | ------------------- | ------------------------------------- |
 | `put(K key, V val)` | Adds or updates a key-value pair      |
 | `get(Object key)`   | Returns value mapped to the key       |
-| `containsKey(key)`  | Checks if the key exists              |
-| `containsValue(v)`  | Checks if the value exists            |
+| `containsKey(K key)`| Checks if the key exists              |
+| `containsValue(V value)`  | Checks if the value exists            |
 | `remove(key)`       | Removes the mapping for the key       |
+|  `size()`           | Number of key-value pairs             |
+|  `isEmpty()`         | Checks if map is empty       |
 | `keySet()`          | Returns a `Set` view of the keys      |
 | `values()`          | Returns a `Collection` view of values |
 | `entrySet()`        | Returns a `Set` of key-value entries  |
 
----
+
 
 ## 🧠 Map vs Collection
 
@@ -138,7 +139,7 @@ props.getProperty("app.name");
 | -------------- | ---------------- | ------------------- |
 | Element Access | Single elements  | Key-value pairs     |
 | Duplicates     | Allowed (List)   | Keys must be unique |
-| Ordering       | Depends on impl. | Depends on impl.    |
+| Ordering       | Depends on implementation. | Depends on implementation.    |
 | Nulls          | Varies           | Varies by map type  |
 
 ---
@@ -162,7 +163,6 @@ props.getProperty("app.name");
 * Use `TreeMap` when you need keys sorted.
 * Avoid `Hashtable` in modern Java — prefer `ConcurrentHashMap` for thread-safe needs.
 
-Would you like to generate icons, export this for Canva, or add code samples for each method?
 
 
 

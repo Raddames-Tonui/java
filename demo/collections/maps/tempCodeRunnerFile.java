@@ -1,1 +1,2 @@
-users.remove(2)
+");
+        // names.put(null, "Johny");
