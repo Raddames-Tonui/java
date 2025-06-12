@@ -100,7 +100,7 @@ int index = names.indexOf("Emma");
 We'll dive deeper into the following:
 
 1. `ArrayList` [demo](./ArrayLists.md)
-2. `LinkedList`
+2. `LinkedList` [demo](./LinkedList.md)
 3. `Vector`
 4. `Stack` (which extends `Vector`)
 
@@ -120,4 +120,3 @@ We'll dive deeper into the following:
 * Use `Collections.unmodifiableList()` for read-only lists.
 
 
-## 📘 Next: `ArrayList` in Depth →
