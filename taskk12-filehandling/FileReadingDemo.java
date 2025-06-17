@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileHandlingDemo {
+public class FileReadingDemo {
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: java FileHandlingDmo <file_path>");

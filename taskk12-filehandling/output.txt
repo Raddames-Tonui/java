@@ -1,0 +1,2 @@
+This is sample content to write to a file in java.
+ You managed to write.

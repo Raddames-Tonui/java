@@ -13,6 +13,9 @@ public class Employee {
         this.name = name;
         this.department = department;
     }
+    public Employee(String empNum, String empName, double salary) {
+        //TODO Auto-generated constructor stub
+    }
     // Getters
     public int getEmployeeId() {
         return employeeId;
