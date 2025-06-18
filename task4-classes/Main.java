@@ -1,7 +1,9 @@
 public class Main {
     public static void main(String[] args) {
+
+        //Instantiating
         Employees fullTime = new FullTimeEmployee(1, "James", 2000, 10000);
-        Employees partTime = new PartTimeEmployee(2, "Sarah", 20, 15.0);
+        Employees partTime = new PartTimeEmployee(2, "Raddames", 20, 15.0);
     
         System.out.println("== Full-Time Employee ==");
         fullTime.displayEmployeeDetails();

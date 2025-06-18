@@ -57,7 +57,6 @@ public class Book {
 
 
     // Book does override a method from Object(java.lang.Object) (toString()), 
-    // so @Override is valid and recommended. 
     // Every class in Java extends Object from java.lang.Object by default.
     @Override
     public String toString(){

@@ -1,8 +1,9 @@
 // Abstact class Employees
 public abstract class Employees {
-    int employeeNumber;
-    String employeeName;
-    double netSalary;
+    // Instance variables
+    protected int employeeNumber;
+    protected String employeeName;
+    protected double netSalary;
 
     // Constructor to initialize employee details
     public Employees( int employeeNumber, String employeeName){
