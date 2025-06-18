@@ -7,6 +7,13 @@ Asymmetric encryption, also known as public-key cryptography, is a cryptographic
 * A **public key**: Used for encryption and signature verification.
 * A **private key**: Used for decryption and signing.
 
+### 🗝️ Super Simple Rule:
+
+    Encrypt = use Public key
+    Decrypt = use Private key
+    Sign = use Private key
+    Verify = use Public key
+
 This allows secure communication and digital verification without having to share private keys.
 
 ## ✍️ What Are Digital Signatures?
@@ -18,6 +25,20 @@ Digital signatures verify the authenticity and integrity of a message:
 * The recipient decrypts the signature using the **public key** and compares it with the message's hash.
 
 If they match, the message is verified. If altered, the verification fails.
+
+---
+
+## 🌍 Where Is Asymmetric Encryption Used?
+
+Asymmetric encryption plays a critical role in modern security infrastructure:
+
+* **HTTPS (SSL/TLS)**: Used to exchange encryption keys securely between client and server.
+* **Email Security**: S/MIME and PGP use asymmetric encryption for signing and encrypting emails.
+* **Digital Signatures**: Used in document verification, code signing, and blockchain transactions.
+* **Cryptocurrencies**: Bitcoin and Ethereum wallets use asymmetric cryptography for transaction signing.
+* **Software Licensing**: Securely verify license keys using public/private key mechanisms.
+* **Secure Shell (SSH)**: Authenticates users and encrypts session traffic.
+* **JWT Tokens**: Signed with private keys and verified using public keys in RS256.
 
 ---
 

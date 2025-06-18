@@ -134,53 +134,6 @@ Object
 
 ---
 
-## 🔍 Example Code Summary
-
-```java
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Arrays;
-
-public class AESGCMEncryption {
-    public static void main(String[] args) throws Exception {
-        byte[] keyBytes = new byte[16];
-        new SecureRandom().nextBytes(keyBytes);
-        SecretKey secretKey = new SecretKeySpec(keyBytes, "AES");
-
-        byte[] iv = new byte[12];
-        new SecureRandom().nextBytes(iv);
-        GCMParameterSpec gcmSpec = new GCMParameterSpec(128, iv);
-
-        System.out.println("Raw IV: " + Arrays.toString(iv));
-
-        String plainText = "Confidential message for Task 15.";
-
-        Cipher encryptCipher = Cipher.getInstance("AES/GCM/NoPadding");
-        encryptCipher.init(Cipher.ENCRYPT_MODE, secretKey, gcmSpec);
-        byte[] cipherText = encryptCipher.doFinal(plainText.getBytes());
-
-        System.out.println("Raw Cipher: " + Arrays.toString(cipherText));
-
-        String encryptedBase64 = Base64.getEncoder().encodeToString(cipherText);
-        String ivBase64 = Base64.getEncoder().encodeToString(iv);
-
-        System.out.println("Encrypted Cipher (Base64): " + encryptedBase64);
-        System.out.println("Encrypted IV (Base64): " + ivBase64);
-
-        GCMParameterSpec decryptGcmSpec = new GCMParameterSpec(128, Base64.getDecoder().decode(ivBase64));
-        Cipher decryptCipher = Cipher.getInstance("AES/GCM/NoPadding");
-        decryptCipher.init(Cipher.DECRYPT_MODE, secretKey, decryptGcmSpec);
-        byte[] decryptedBytes = decryptCipher.doFinal(Base64.getDecoder().decode(encryptedBase64));
-
-        String decryptedText = new String(decryptedBytes);
-        System.out.println("Decrypted Text: " + decryptedText);
-    }
-}
-```
 ### 🔐What are supposed to be hidden:
 #### SECRET: 
 The secretKey (or keyBytes) must be securely stored and protected.
