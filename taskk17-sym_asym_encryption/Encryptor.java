@@ -1,4 +1,3 @@
-package sym_asym_encryption;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
