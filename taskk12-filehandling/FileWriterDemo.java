@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class FileWriterDemo {
     public static void main(String[] args) {
-        String content = "This is sample content to write to a file in java.\n You managed to write.";
+        String content = "This is sample content to write to a file in java.\nCongratulations! You managed to write.";
 
         File file = new File("output.txt");
 

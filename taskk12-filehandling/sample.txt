@@ -1,1 +1,1 @@
-Hello World!
+This is a file to showcase how java Reads from files using various methods.

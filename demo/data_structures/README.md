@@ -31,13 +31,13 @@ java.util.Collection (interface)
 
 ---
 
-## 🔹 java.util.List Interface
+## 🔹 List Interface
 
 * **Ordered collection** (elements retain insertion order)
 * Allows **duplicates**
 * Index-based access to elements
 
-### ArrayList
+###  a) ArrayList
 
 * Backed by a resizable array
 * Fast random access: O(1)
@@ -51,7 +51,7 @@ list.add("Banana");
 list.get(1); // Banana
 ```
 
-### LinkedList
+### b) LinkedList
 
 * Doubly linked list
 * Slower access by index: O(n)
@@ -65,7 +65,7 @@ list.add("Apple");
 list.addFirst("Banana");
 ```
 
-### Vector / Stack
+### c) Vector / Stack
 
 * `Vector`: synchronized, dynamic array
 * `Stack`: extends `Vector`, LIFO (Last-In-First-Out)
@@ -79,12 +79,12 @@ stack.pop(); // Apple
 
 ---
 
-## 🔹 java.util.Queue Interface
+## 🔹 Queue Interface
 
 * Used for **FIFO** (First-In-First-Out) data structures
 * Core methods: `offer()`, `poll()`, `peek()`
 
-### PriorityQueue
+### a) PriorityQueue
 
 * Elements ordered using natural order or comparator
 * Not thread-safe
@@ -98,7 +98,7 @@ queue.offer(5);
 queue.poll(); // 5
 ```
 
-### ArrayDeque
+### b) ArrayDeque
 
 * Resizable array-based implementation of `Deque`
 * Faster than `Stack` or `LinkedList`
@@ -114,12 +114,12 @@ deque.pollFirst(); // Apple
 
 ---
 
-## 🔹 java.util.Set Interface
+## 🔹 Set Interface
 
 * **No duplicates allowed**
 * Key methods: `add()`, `remove()`, `contains()`, `iterator()`
 
-### HashSet
+### a) HashSet
 
 * **No order guaranteed**
 * Backed by a `HashMap`
@@ -133,7 +133,7 @@ set.add("Apple");
 set.add("Banana");
 ```
 
-### LinkedHashSet
+### b) LinkedHashSet
 
 * Maintains **insertion order**
 * Backed by `LinkedHashMap`
@@ -146,7 +146,7 @@ set.add("Apple");
 set.add("Banana");
 ```
 
-### TreeSet
+### c) TreeSet
 
 * Implements `NavigableSet` and `SortedSet`
 * **Sorted order** (natural or custom)

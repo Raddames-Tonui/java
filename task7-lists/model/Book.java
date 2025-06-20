@@ -3,6 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Book {
+    // Instance variables
     private int bookID;
     private String bookName;
     private String bookAuthor;
@@ -56,8 +57,9 @@ public class Book {
     }
 
 
-    // Book does override a method from Object(java.lang.Object) (toString()), 
+    // Book does override a method from Object(java.lang.Object) toString()), 
     // Every class in Java extends Object from java.lang.Object by default.
+    // @Override is annotation (decorators in Python)
     @Override
     public String toString(){
         return "Book{" +
