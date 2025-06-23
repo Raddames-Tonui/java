@@ -1,4 +1,4 @@
-# 📦 Maven Concepts and Task 22 Breakdown
+# 📦 Maven Concepts 
 
 ## 🧠 What is Maven?
 
@@ -18,7 +18,7 @@ Maven is a **build automation and dependency management tool** for Java projects
 
 ## 🚀 Setting Up Maven
 
-### ✅ Installing Maven Ubuntu 
+### ✅ Installing Maven in Ubuntu 
 
 ```bash
 sudo apt update
@@ -117,55 +117,92 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar com.example.helloworld.App
 
 ## 📚 Task: Add Gson Library + Convert List to JSON
 Gson is a Java library that facilitates the conversion of Java objects to JSON and vice versa. It is available within the com.google.code.gson namespace and is commonly used in Java projects. You can incorporate Gson into your project by including it as a dependency in your Maven POM file. This allows you to easily serialize Java objects into JSON strings and deserialize JSON strings back into Java objects, simplifying data exchange and manipulation in your applications.
+## Running the Project with Maven
 
-### ✅ Step 1: Add Gson Dependency in `pom.xml`
+This guide explains how to set up and run your Java project using Maven, including project creation, configuration, and execution.
 
-Inside `<dependencies>`:
+### 1. Create a Maven Project
 
-```xml
-<dependency>
-  <groupId>com.google.code.gson</groupId>
-  <artifactId>gson</artifactId>
-  <version>2.11.0</version>
-</dependency>
-```
-
-
-
-### ✅ Step 2: Convert Java List to JSON and Back
-
-Edit `App.java`:
-
-```java
-package com.example.helloworld;
-
-import com.google.gson.Gson;
-import java.util.Arrays;
-import java.util.List;
-
-public class App {
-    public static void main(String[] args) {
-        Gson gson = new Gson();
-
-        List<String> items = Arrays.asList("apple", "banana", "mango");
-        String json = gson.toJson(items);
-        System.out.println("JSON: " + json);
-
-        List<?> fromJson = gson.fromJson(json, List.class);
-        System.out.println("List: " + fromJson);
-    }
-}
-```
-
-### ✅ Rebuild and Run
+Use the Maven archetype plugin to generate a new project:
 
 ```bash
-mvn clean compile
-mvn package
-java -cp target/helloworld-1.0-SNAPSHOT.jar com.example.helloworld.App
+mvn archetype:generate \
+  -DgroupId=com.example.task7gson \
+  -DartifactId=task7gson \
+  -DarchetypeArtifactId=maven-archetype-quickstart \
+  -DinteractiveMode=false
 ```
 
----
+This creates a basic Maven project structure with the specified group ID and artifact ID.
+
+### 2. Configure Java Version in `pom.xml`
+
+Specify the Java version you want to use (e.g., Java 21) in your `pom.xml` file:
+
+```xml
+<properties>
+  <maven.compiler.source>21</maven.compiler.source>
+  <maven.compiler.target>21</maven.compiler.target>
+</properties>
+```
+
+### 3. Add Dependencies and Plugins
+
+Ensure the `pom.xml` includes necessary dependencies (e.g., Gson for JSON serialization/deserialization) and the `exec-maven-plugin` to allow running the project:
+
+```xml
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>exec-maven-plugin</artifactId>
+      <version>3.1.0</version>
+      <configuration>
+        <mainClass>com.example.task7gson.App</mainClass>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+```
+
+### 4. Build the Project
+
+Compile your project using:
+
+```bash
+mvn clean compile exec:java
+```
+
+* This cleans previous build artifacts and compiles the source code.
+
+* Run App with all dependencies like Gson included
+
+### 5. Run the Project
+
+Execute the main class using the Maven Exec Plugin:
+
+```bash
+mvn exec:java
+```
+
+### 📦 Sample JSON Output:
+
+```json
+📦 JSON Output:
+[{"bookID":3,"bookName":"Java Concurrency in Practice","bookAuthor":"Brian Goetz","numberOfCopies":4,"datePublished":"May 19, 2006"},{"bookID":4,"bookName":"Spring in Action","bookAuthor":"Craig Walls","numberOfCopies":6,"datePublished":"Feb 15, 2021"},{"bookID":5,"bookName":"Head First Java","bookAuthor":"Kathy Sierra","numberOfCopies":8,"datePublished":"Jun 10, 2005"}]
+
+```
+
+### 📥 Deserialized Books:
+
+```
+Book{bookID=3, bookName='Java Concurrency in Practice', bookAuthor='Brian Goetz', numberOfCopies=4, datePublished=2006-05-19}
+Book{bookID=4, bookName='Spring in Action', bookAuthor='Craig Walls', numberOfCopies=6, datePublished=2021-02-15}
+Book{bookID=5, bookName='Head First Java', bookAuthor='Kathy Sierra', numberOfCopies=8, datePublished=2005-06-10}
+```
+
+With these steps, you can easily compile and run your Java Maven project, with Gson handling JSON serialization and deserialization.
+
 
 ## 🆚 Maven vs Gradle vs Ant (Summary)
 
