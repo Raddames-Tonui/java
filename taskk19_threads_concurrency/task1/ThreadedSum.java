@@ -21,7 +21,7 @@ class SumTask extends Thread {
         for (int i = start; i <= end; i++) {
 
             System.out.println(partialSum += i);
-//            partialSum += i;
+        //    partialSum += i;
         }
     }
 
@@ -44,10 +44,10 @@ public class ThreadedSum {
 
         // Create and start each thread
         for (int i = 0; i < threadCount; i++) {
-            int start = i * chunkSize + 1;
-            int end = (i + 1) * chunkSize;
+            int start = i * chunkSize + 1;  // To start at 1   0 * 10,000 + 1 = 1
+            int end = (i + 1) * chunkSize; // To end at 10,000 (0+1) * 10,000 = 10,000
             SumTask task = new SumTask(start, end);
-            threads.add(task);
+            threads.add(task); // append the computed to the List
             task.start(); // launches new thread
         }
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Reusable contact type allowing either email or phone -->
+    <!-- Must be declared before use -->
+    <xs:complexType name="ContactType">
+        <xs:choice>
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="phone" type="xs:string" />
+        </xs:choice>
+    </xs:complexType>
+
+    <!-- Root people element -->
+    <xs:element name="people">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Repeating person element -->
+                <xs:element name="person" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <!-- Name element -->
+                            <xs:element name="name" type="xs:string" />
+
+                            <!-- Age with Numeric restrictions -->
+                            <xs:element name="age">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:integer">
+                                        <xs:minInclusive value="0" />
+                                        <xs:maxInclusive value="120" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Optional salary -->
+                            <xs:element name="salary" type="xs:string" minOccurs="0" />
+
+                            <!-- Career with limited enumerated values -->
+                            <xs:element name="career">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="S/W dev" />
+                                        <xs:enumeration value="doctor" />
+                                        <xs:enumeration value="teacher" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Optional contact (Choice between email or phone) -->
+                            <!-- Uses ContactType we had declared before root element -->
+                            <xs:element name="contact" type="ContactType" minOccurs="0" />
+
+                            <!-- Optional country with default value  -->
+                            <xs:element name="country" type="xs:string" minOccurs="0"
+                                default="Kenya" />
+
+                        </xs:sequence>
+                        <!-- Required Id attribute -->
+                        <xs:attribute name="id" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>

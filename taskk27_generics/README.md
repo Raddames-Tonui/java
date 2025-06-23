@@ -171,6 +171,14 @@ class CustomBox<T> extends Box<T> {}
 ### Generic Method Chaining
 
 A pattern where generic methods return `this` to allow chaining calls.
+`Method chaining` is a pattern where each method returns the current object (this) to allow a sequence of method calls on a single line.
+This is common in:
+
+* Builder patterns
+
+* Fluent interfaces
+
+* Config objects
 
 ```java
 class Fluent<T> {

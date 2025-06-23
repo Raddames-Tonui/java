@@ -1,0 +1,48 @@
+<xs:element name="GrpHdr">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="MsgId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="CreDtTm" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="InstgAgt" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="FinInstnId">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Othr">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="Id" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="InstdAgt" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="FinInstnId">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Othr">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="Id" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>

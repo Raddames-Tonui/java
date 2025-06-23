@@ -2,11 +2,12 @@
 
 ## Overview
 
+Imagine your brain handling many things at once: talking, walking, and remembering your to-do list. That's multithreading. Computers can do this too, and in Java, we use threads to achieve it.
+
 Java provides built-in support for multithreading and concurrent programming through its `java.lang.Thread` class and `java.util.concurrent` package. These enable developers to write efficient, scalable, and high-performance applications that can perform multiple tasks simultaneously.
 
 Concurrency is essential in modern programming, especially when dealing with large-scale systems, parallel computations, I/O operations, and real-time applications. This document serves as a foundational guide to understanding Java's thread model and common concurrency patterns.
 
----
 
 ## The Big Picture: Multithreading and Parallel Computing
 
@@ -24,7 +25,6 @@ Benefits include:
 * Improved user experience via responsive UIs
 * Scalable background processing (e.g., data ingestion, analytics)
 
----
 
 ## Class Hierarchy & Thread Architecture
 
@@ -47,7 +47,18 @@ java.util.concurrent
   └── Locks, Semaphores - Fine-grained control
 ```
 
----
+## Key Classes and Interfaces
+
+| Class/Interface       | Purpose                                   |
+| --------------------- | ----------------------------------------- |
+| `Thread`              | Basic unit of execution                   |
+| `Runnable`            | Functional interface for thread logic     |
+| `ExecutorService`     | Manages thread pools and task scheduling  |
+| `Future` / `Callable` | Represents async result & task            |
+| `BlockingQueue`       | Thread-safe queue for producers/consumers |
+| `ReentrantLock`       | Fine-grained thread control               |
+| `synchronized`        | Built-in monitor-based locking            |
+
 
 ## Core Threading Concepts
 
@@ -79,7 +90,6 @@ Thread thread = new Thread(task);
 thread.start();
 ```
 
----
 
 ## Common Concurrency Patterns
 
@@ -123,21 +133,6 @@ Runnable consumer = () -> queue.take();
 
 This pattern decouples work producers and processors. Useful for streaming, logging, or job queues.
 
----
-
-## Key Classes and Interfaces
-
-| Class/Interface       | Purpose                                   |
-| --------------------- | ----------------------------------------- |
-| `Thread`              | Basic unit of execution                   |
-| `Runnable`            | Functional interface for thread logic     |
-| `ExecutorService`     | Manages thread pools and task scheduling  |
-| `Future` / `Callable` | Represents async result & task            |
-| `BlockingQueue`       | Thread-safe queue for producers/consumers |
-| `ReentrantLock`       | Fine-grained thread control               |
-| `synchronized`        | Built-in monitor-based locking            |
-
----
 
 ## Where to Use Threads and Concurrency
 
@@ -148,7 +143,6 @@ This pattern decouples work producers and processors. Useful for streaming, logg
 * Event-driven systems
 * GUI responsiveness (e.g., Swing/JavaFX apps)
 
----
 
 ## Best Practices
 
@@ -158,7 +152,6 @@ This pattern decouples work producers and processors. Useful for streaming, logg
 * Always handle `InterruptedException`
 * Design thread-safe classes carefully (immutability helps)
 
----
 
 ## Further Reading
 
@@ -166,7 +159,6 @@ This pattern decouples work producers and processors. Useful for streaming, logg
 * Oracle Docs: [https://docs.oracle.com/javase/tutorial/essential/concurrency/](https://docs.oracle.com/javase/tutorial/essential/concurrency/)
 * Java API: `java.util.concurrent`
 
----
 
 ## Conclusion
 

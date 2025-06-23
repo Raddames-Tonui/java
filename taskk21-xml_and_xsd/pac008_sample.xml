@@ -1,0 +1,41 @@
+ <FIToFIPmtStsRpt>
+        <GrpHdr> <!-- MANDATORY.-->
+            <MsgId>9d3b58b4542b41768d1ae5a720a4190c</MsgId> <!-- MANDATORY. Max Length 32 -->
+            <CreDtTm>2024-12-17T09:22:47.934Z</CreDtTm> <!-- MANDATORY.-->
+            <InstgAgt>
+                <FinInstnId>
+                    <Othr>
+                        <Id>9999</Id> <!-- MANDATORY. Numeric -->
+                    </Othr>
+                </FinInstnId>
+            </InstgAgt>
+            <InstdAgt>
+                <FinInstnId>
+                    <Othr>
+                        <Id>0222</Id> <!-- MANDATORY. Numeric -->
+                    </Othr>
+                </FinInstnId>
+            </InstdAgt>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>20241217092544095847</OrgnlMsgId> <!-- MANDATORY. Numeric. Max Length 32 -->
+            <OrgnlMsgNmId>pacs.008</OrgnlMsgNmId>         <!-- MANDATORY -->
+            <OrgnlCreDtTm>2024-12-17T09:25:59.150Z</OrgnlCreDtTm> <!-- MANDATORY -->
+        </OrgnlGrpInfAndSts>
+        <TxInfAndSts>
+            <OrgnlTxRef>
+                <IntrBkSttlmAmt Ccy="KES">57</IntrBkSttlmAmt> <!-- MANDATORY -->
+                <SttlmInf>                     
+                    <SttlmMtd>CLRG</SttlmMtd>  <!-- OPTIONAL. Allowed CLRG/MADN-->
+                    <ClrSys>
+                        <Prtry>IPS</Prtry>      <!-- OPTIONAL. Allowed IPS/PSA-->
+                    </ClrSys>
+                </SttlmInf>
+                <PmtTpInf>
+                    <SvcLvl>
+                        <Prtry>P2PT</Prtry>    <!-- MANDATORY. Allowed P2PI,P2BT,B2PT,B2BT-->
+                    </SvcLvl>
+                </PmtTpInf>
+            </OrgnlTxRef>
+        </TxInfAndSts>
+    </FIToFIPmtStsRpt>

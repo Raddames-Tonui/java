@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="people.xsd">
+
+    <person id="P001">
+        <name>Raddames</name>
+        <age>28</age>
+        <salary>salary: &lt; 20000</salary>
+        <career>S/W dev</career>
+        <contact>
+            <email>raddames@example.com</email>
+        </contact>
+    </person>
+
+    <person id="P002">
+        <name>Isaac</name>
+        <age>16</age>
+        <career>doctor</career>
+        <contact>
+            <phone>0712345678</phone>
+        </contact>
+    </person>
+
+    <person id="P003">
+        <name>Jane</name>
+        <age>33</age>
+        <career>teacher</career>
+        <country />
+    </person>
+
+</people>

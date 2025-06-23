@@ -51,5 +51,20 @@ public class Main {
         // ✅ 5. Wildcards <? extends T>
         List<Double> doubleList = Arrays.asList(1.1, 2.2, 3.3);
         WildcardPrinter.printNumberList(doubleList);
+
+         // ✅ 6. Create a Fluent object for String
+        // Method chaining allows setting multiple properties in one line
+        Fluent<String> fluentString = new Fluent<String>()
+            .set("Hello, Fluent World!")  // Set value
+            .label("Greeting");           // Set label
+
+        fluentString.display(); // Output: Greeting: Hello, Fluent World!
+
+        // Create a Fluent object for Integer
+        Fluent<Integer> fluentInt = new Fluent<Integer>()
+            .set(42)              // Set integer value
+            .label("The Answer"); // Set label
+
+        fluentInt.display(); // Output: The Answer: 42
     }
 }

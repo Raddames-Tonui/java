@@ -1,0 +1,178 @@
+<item xmlns="urn:flexicore.datamap_dictionary" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" tag_name="APP"
+         xsi:schemaLocation="urn:flexicore.datamap_dictionary ../../datamap_dictionary.schema.xsd">
+    <data_type type="NONE"/>
+    <!-- <APP ACTION=''> -->
+    <item tag_name="ACTION" use="MANDATORY">
+        <data_type length="unbounded" static_value="ADD" type="STRING"/>
+    </item>
+
+    <!-- <APP APP_CODE=''> -->
+    <item tag_name="APP_CODE" use="MANDATORY">
+        <data_type static_value="150" type="INTEGER"/>
+    </item>
+
+    <!-- <APP TYPE=''> -->
+    <item tag_name="TYPE" use="MANDATORY">
+        <data_type length="unbounded" static_value="CUSTOMER_SIGNATORIES_MANAGEMENT" type="STRING"/>
+    </item>
+
+    <!-- <IDENTIFIER_TYPE/> -->
+    <item field_name="identifier_type" field_type="TABLE_BASED" max_occurs="1" tag_name="IDENTIFIER_TYPE">
+        <data_type type="xpath:/model_information/fields/field[@name='identifier_type']"/>
+    </item>
+
+    <!-- <IDENTIFIER/> -->
+    <item field_name="identifier" field_type="TABLE_BASED" max_occurs="1" tag_name="IDENTIFIER">
+        <data_type type="xpath:/model_information/fields/field[@name='identifier']"/>
+        <check_duplicate value="YES">
+            <associated_field value="xpath:/APP/IDENTIFIER_TYPE"/>
+        </check_duplicate>
+    </item>
+
+    <!-- <PRIMARY_IDENTITY_TYPE/> -->
+    <item field_name="primary_identity_type" field_type="TABLE_BASED" max_occurs="1" tag_name="PRIMARY_IDENTITY_TYPE">
+        <data_type type="xpath:/model_information/fields/field[@name='primary_identity_type']"/>
+    </item>
+
+    <!-- <PRIMARY_IDENTITY_NO/> -->
+    <item field_name="primary_identity_no" field_type="TABLE_BASED" max_occurs="1" tag_name="PRIMARY_IDENTITY_NO">
+        <data_type type="xpath:/model_information/fields/field[@name='primary_identity_no']"/>
+        <check_duplicate value="YES">
+            <associated_field value="xpath:/APP/PRIMARY_IDENTITY_TYPE"/>
+        </check_duplicate>
+    </item>
+
+    <!-- <OTHER_IDENTITIES> -->
+    <item field_name="other_identities" field_type="APPLICATION_BASED" max_occurs="1" tag_name="OTHER_IDENTITIES" use="OPTIONAL">
+        <data_type type="NONE"/>
+
+        <!-- <OTHER_IDENTITIES>
+                  <IDENTITY>
+        -->
+        <item field_type="APPLICATION_BASED" max_occurs="unbounded" tag_name="IDENTITY">
+            <data_type type="xpath:/model_information/fields/field_set[@name='other_identities']/field[@name='/OTHER_IDENTITIES/IDENTITY']"/>
+
+            <!-- <OTHER_IDENTITIES>
+                  <IDENTITY TYPE=''>
+            -->
+            <item field_type="APPLICATION_BASED" tag_name="TYPE">
+                <data_type type="xpath:/model_information/fields/field_set[@name='other_identities']/field[@name='/OTHER_IDENTITIES/IDENTITY/@TYPE']"/>
+            </item>
+        </item>
+    </item>
+
+    <!-- <TITLE/> -->
+    <item field_name="title" field_type="TABLE_BASED" max_occurs="1" tag_name="TITLE">
+        <data_type type="xpath:/model_information/fields/field[@name='title']"/>
+    </item>
+
+    <!-- <FULL_NAME/> -->
+    <item field_name="full_name" field_type="TABLE_BASED" max_occurs="1" tag_name="FULL_NAME">
+        <data_type type="xpath:/model_information/fields/field[@name='full_name']"/>
+    </item>
+
+    <!-- <SHORT_NAME/> -->
+    <item field_name="short_name" field_type="API_BASED" max_occurs="1" tag_name="SHORT_NAME">
+        <data_type type="xpath:/model_information/fields/field[@name='short_name']"/>
+    </item>
+
+    <!-- <GENDER/> -->
+    <item field_name="gender" field_type="TABLE_BASED" max_occurs="1" tag_name="GENDER">
+        <data_type type="xpath:/model_information/fields/field[@name='gender']"/>
+    </item>
+
+    <!-- <DATE_OF_BIRTH/> -->
+    <item field_name="date_of_birth" field_type="TABLE_BASED" max_occurs="1" tag_name="DATE_OF_BIRTH">
+        <data_type type="xpath:/model_information/fields/field[@name='date_of_birth']"/>
+    </item>
+
+    <!-- <PRIMARY_MOBILE_NUMBER/> -->
+    <item field_name="primary_mobile_number" field_type="TABLE_BASED" max_occurs="1" tag_name="PRIMARY_MOBILE_NUMBER">
+        <data_type type="xpath:/model_information/fields/field[@name='primary_mobile_number']"/>
+    </item>
+
+    <!-- <PRIMARY_EMAIL_ADDRESS/> -->
+    <item field_name="primary_email_address" field_type="TABLE_BASED" max_occurs="1" tag_name="PRIMARY_EMAIL_ADDRESS">
+        <data_type type="xpath:/model_information/fields/field[@name='primary_email_address']"/>
+    </item>
+
+    <!-- <OTHER_CONTACTS> -->
+    <item field_name="other_contacts" field_type="APPLICATION_BASED" max_occurs="1" tag_name="OTHER_CONTACTS" use="OPTIONAL">
+        <data_type type="NONE"/>
+
+        <!-- <OTHER_CONTACTS>
+                  <CONTACT>
+        -->
+        <item field_type="APPLICATION_BASED" max_occurs="unbounded" tag_name="CONTACT">
+            <data_type type="xpath:/model_information/fields/field_set[@name='other_contacts']/field[@name='/OTHER_CONTACTS/CONTACT']"/>
+
+            <!-- <OTHER_CONTACTS>
+                  <CONTACT TYPE=''>
+            -->
+            <item field_type="APPLICATION_BASED" tag_name="TYPE">
+                <data_type type="xpath:/model_information/fields/field_set[@name='other_contacts']/field[@name='/OTHER_CONTACTS/CONTACT/@TYPE']"/>
+            </item>
+        </item>
+    </item>
+
+    <!-- <STATUS/> -->
+    <item field_name="status" field_type="TABLE_BASED" max_occurs="1" tag_name="STATUS">
+        <data_type type="xpath:/model_information/fields/field[@name='status']"/>
+    </item>
+
+    <!-- <STATUS_DATE/> -->
+    <item field_name="status_date" field_type="TABLE_BASED" max_occurs="1" tag_name="STATUS_DATE">
+        <data_type type="xpath:/model_information/fields/field[@name='status_date']"/>
+    </item>
+
+    <!-- <STATUS_DESCRIPTION/> -->
+    <item field_name="status_description" field_type="TABLE_BASED" max_occurs="1" tag_name="STATUS_DESCRIPTION">
+        <data_type type="xpath:/model_information/fields/field[@name='status_description']"/>
+    </item>
+
+    <!-- <STATUS_START_DATE/> -->
+    <item field_name="status_start_date" field_type="TABLE_BASED" max_occurs="1" tag_name="STATUS_START_DATE">
+        <data_type type="xpath:/model_information/fields/field[@name='status_start_date']"/>
+    </item>
+
+    <!-- <STATUS_END_DATE/> -->
+    <item field_name="status_end_date" field_type="TABLE_BASED" max_occurs="1" tag_name="STATUS_END_DATE">
+        <data_type type="xpath:/model_information/fields/field[@name='status_end_date']"/>
+    </item>
+
+    <!-- <REGISTRATION_DATE/> -->
+    <item field_name="registration_date" field_type="TABLE_BASED" max_occurs="1" tag_name="REGISTRATION_DATE">
+        <data_type type="xpath:/model_information/fields/field[@name='registration_date']"/>
+    </item>
+
+    <!-- <DATE_CREATED/> -->
+    <item field_name="date_created" field_type="API_BASED" max_occurs="1" tag_name="DATE_CREATED">
+        <data_type type="xpath:/model_information/fields/field[@name='date_created']"/>
+    </item>
+
+    <!-- <TAX_AUTHORITY/> -->
+    <item field_name="tax_authority" field_type="TABLE_BASED" max_occurs="1" tag_name="TAX_AUTHORITY">
+        <data_type type="xpath:/model_information/fields/field[@name='tax_authority']"/>
+    </item>
+
+    <!-- <TAX_AUTHORITY_PIN_NUMBER/> -->
+    <item field_name="tax_authority_pin_number" field_type="TABLE_BASED" max_occurs="1" tag_name="TAX_AUTHORITY_PIN_NUMBER">
+        <data_type type="xpath:/model_information/fields/field[@name='tax_authority_pin_number']"/>
+    </item>
+
+    <!-- <RESTRICTED_ACCESS_NATIONALITIES_MATCH_TYPE/> -->
+    <item field_name="restricted_access_nationalities_match_type" field_type="TABLE_BASED" max_occurs="1" tag_name="RESTRICTED_ACCESS_NATIONALITIES_MATCH_TYPE">
+        <data_type type="xpath:/model_information/fields/field[@name='restricted_access_nationalities_match_type']"/>
+    </item>
+
+    <!-- <MAX_RESTRICTED_ACCESS_NATIONALITIES/> -->
+    <item field_name="max_restricted_access_nationalities" field_type="TABLE_BASED" max_occurs="1" tag_name="MAX_RESTRICTED_ACCESS_NATIONALITIES">
+        <data_type type="xpath:/model_information/fields/field[@name='max_restricted_access_nationalities']"/>
+    </item>
+
+    <!-- <RESTRICTED_ACCESS_NATIONALITIES/> -->
+    <item field_name="restricted_access_nationalities" field_type="TABLE_BASED" max_occurs="1" tag_name="RESTRICTED_ACCESS_NATIONALITIES">
+        <data_type type="xpath:/model_information/fields/field[@name='restricted_access_nationalities']"/>
+    </item>
+
+</item>
