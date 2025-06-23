@@ -47,17 +47,7 @@ Java loads this tree using the DOM so you can:
       └── <age>25</age>
 ```
 
-### Java DOM Class Tree
-
-```
-javax.xml.parsers.DocumentBuilderFactory
-├── DocumentBuilder
-    └── org.w3c.dom.Document (represents the XML tree)
-        ├── Element (represents tags like <person>)
-        │   ├── getAttribute(), setAttribute(), getTagName()
-        ├── NodeList (list of child nodes)
-        └── Node (base class of everything)
-```
+Using DOM in Java lets you say: “Go to `person`, get their `name`, or delete their `age`.”
 
 ---
 
@@ -72,19 +62,12 @@ Instead of walking every branch, XPath lets you search directly:
 
 ### Common XPath Examples:
 
-| XPath                                | Meaning                                                         |
-| ------------------------------------ | --------------------------------------------------------------- |
-| `//person`                           | Find all `<person>` tags anywhere in the document               |
-| `/root/person/name`                  | Select `<name>` directly under `<person>` under `<root>`        |
-| `//element[@field_type='API_BASED']` | Find all `<element>` tags with attribute `field_type=API_BASED` |
-| `//element[@use='MANDATORY']`        | Find all `<element>` tags where `use=MANDATORY`                 |
-| `count(//element)`                   | Count how many `<element>` tags exist                           |
-| `//element[@check_duplicate='true']` | Find all duplicate-check-enabled fields                         |
-| `//element[@*]`                      | Find all elements that have at least one attribute              |
-| `//*`                                | Select every node in the document                               |
-| `//element[position()=1]`            | Select the first `<element>` in the document                    |
-| `//element[last()]`                  | Select the last `<element>` in the document                     |
-| `//element[@name='username']`        | Get the element with attribute `name='username'`                |
+| XPath                                | Meaning                                       |
+| ------------------------------------ | --------------------------------------------- |
+| `//person`                           | Find all `<person>` tags anywhere             |
+| `//element[@field_type='API_BASED']` | Find all elements with `field_type=API_BASED` |
+| `//element[@use='MANDATORY']`        | Find elements with `use=MANDATORY`            |
+| `count(//element)`                   | Count how many `<element>` tags exist         |
 
 ---
 
@@ -92,88 +75,64 @@ Instead of walking every branch, XPath lets you search directly:
 
 ### Step-by-Step DOM Setup:
 
-**Step 1**: Load the XML document
-
 ```java
-// Create a factory that produces document builders
 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-// Use the factory to create a DocumentBuilder object
 DocumentBuilder builder = factory.newDocumentBuilder();
-
-// Parse the XML file and store it as a DOM Document object
 Document doc = builder.parse(new File("file.xml"));
 ```
 
-* `DocumentBuilderFactory`: Abstract factory class to create a document builder instance.
-* `DocumentBuilder`: Parses XML and creates a DOM `Document` tree.
-* `Document`: The in-memory representation of the whole XML structure.
-
-**Step 2**: Get all elements by tag name
+### Get Tags:
 
 ```java
-// Get a list of all elements in the document with the tag name "element"
 NodeList list = doc.getElementsByTagName("element");
 ```
 
-* `NodeList`: A collection of nodes returned by methods like `getElementsByTagName()`.
-
-**Step 3**: Access or update attributes
+### Read Attributes:
 
 ```java
-// Get the first element from the list and cast it to Element
-Element element = (Element) list.item(0);
-
-// Read an attribute named "field_type"
 String value = element.getAttribute("field_type");
-
-// Set or change the attribute "use" to "OPTIONAL"
-element.setAttribute("use", "OPTIONAL");
 ```
 
-* `Element`: Represents an XML tag. You can read/set its attributes.
-
-**Step 4**: Remove an element
+### Update or Remove:
 
 ```java
-// Get the parent node of the element
-Node parent = element.getParentNode();
-
-// Remove the child element from its parent
+element.setAttribute("use", "OPTIONAL");
 parent.removeChild(element);
 ```
-
-* This physically deletes a tag from the XML tree in memory.
 
 ---
 
 ## 🌐 How XPath Works in Java
 
-**Step 1**: Create XPath engine
+### Setup:
 
 ```java
-// Create an XPath engine to evaluate expressions
 XPath xpath = XPathFactory.newInstance().newXPath();
 ```
 
-* `XPathFactory`: Used to create an XPath object.
-* `XPath`: Executes expressions like search queries on XML.
-
-**Step 2**: Compile and evaluate XPath expressions
+### Run a Query:
 
 ```java
-// Define your XPath expression
 String expression = "//element[@field_type='API_BASED']";
-
-// Evaluate the expression and return a NodeList result
 NodeList results = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
 ```
 
-* `XPathConstants.NODESET`: Return type that tells XPath to return a list of matching nodes.
-
 ---
 
-## 🎯 Tasks Using DOM (No XPath)
+## 🎯 Now We’re Ready for the Tasks (No XPath First)
+
+### XML Sample:
+
+```xml
+<root>
+  <element tag_name="name" field_type="API_BASED" use="MANDATORY" check_duplicate="true" />
+  <element tag_name="email" field_type="TABLE_BASED" />
+  <element tag_name="phone" use="MANDATORY" />
+  <RESTRICTED_ACCESS_NATIONALITIES_MATCH_TYPE/>
+  <MAX_RESTRICTED_ACCESS_NATIONALITIES/>
+  <RESTRICTED_ACCESS_NATIONALITIES/>
+</root>
+```
 
 ### a. Print `tag_name` for All `API_BASED` Elements
 
@@ -242,12 +201,16 @@ for (int i = 0; i < list.getLength(); i++) {
 
 ---
 
-## 🎯 Tasks Using XPath
+## 🛰️ Same Tasks Using XPath
 
 ### a. Get API\_BASED Elements
 
 ```xpath
 //element[@field_type='API_BASED']
+```
+
+```java
+NodeList nodes = (NodeList) xpath.evaluate("//element[@field_type='API_BASED']", doc, XPathConstants.NODESET);
 ```
 
 ### b. Count TABLE\_BASED Elements

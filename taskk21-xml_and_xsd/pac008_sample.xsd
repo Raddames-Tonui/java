@@ -1,100 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema">
+  <!-- Reusable type for <Othr> -->
+  <xs:complexType name="OthrType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
 
-    <xs:complexType name="OthrType">
-        <xs:sequence>
-            <xs:element name="Id" type="xs:integer"></xs:element>
-        </xs:sequence>
-    </xs:complexType>
+  <!-- Root element -->
+  <xs:element name="FIToFIPmtStsRpt">
+    <xs:complexType>
+      <xs:sequence>
 
-    <!-- Root Element -->
-    <xs:element name="FIToFIPmtStsRpt">
-        <xs:complexType>
+        <!-- GrpHdr block -->
+        <xs:element name="GrpHdr">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MsgId" type="xs:string"/>
+              <xs:element name="CreDtTm" type="xs:dateTime"/>
 
-            <xs:element name="GrpHdr">
+              <xs:element name="InstgAgt">
                 <xs:complexType>
-                    <xs:element name="MsgId" type="xs:string" minOccurs="1" maxOccurs="1"> </xs:element>
-                    <xs:element name="CreDtTm" type="xs:dateTime" minOccurs="1" maxOccurs="1"></xs:element>
-                    <xs:element name="InstgAgt" maxOccurs="unbounded">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element name="FinInstnId">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <!-- <xs:element name="Othr">
-                                                <xs:complexType>
-                                                    <xs:element name="Id" type="xs:integer"> </xs:element>
-                                                </xs:complexType>
-                                            </xs:element> -->
-                                            <xs:element name="Othr" type="OthrType"></xs:element>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
-                            </xs:sequence>
-                        </xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FinInstnId">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Othr" type="OthrType"/>
+                        </xs:sequence>
+                      </xs:complexType>
                     </xs:element>
-
-                    <xs:element element="InstdAgt" maxOccurs="unbounded">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element name="FinInstnId">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="Othr">
-                                                <xs:complexType>
-                                                    <xs:element name="Id" type="xs:integer"></xs:element>
-                                                </xs:complexType>
-                                            </xs:element>
-                                            <xs:element name="Othr" type="OthrType"></xs:element>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
-                            </xs:sequence>
-                        </xs:complexType>
-                    </xs:element>
+                  </xs:sequence>
                 </xs:complexType>
+              </xs:element>
 
-            </xs:element>
-
-            <xs:element name="OrgnlGrpInfAndSts">
+              <xs:element name="InstdAgt">
                 <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="OrgnlMsgId">
+                  <xs:sequence>
+                    <xs:element name="FinInstnId">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Othr" type="OthrType"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- OrgnlGrpInfAndSts block -->
+        <xs:element name="OrgnlGrpInfAndSts">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrgnlMsgId">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32"/>
+                    <xs:pattern value="[0-9]+"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OrgnlMsgNmId" type="xs:string"/>
+              <xs:element name="OrgnlCreDtTm" type="xs:dateTime"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- TxInfAndSts block -->
+        <xs:element name="TxInfAndSts">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrgnlTxRef">
+                <xs:complexType>
+                  <xs:sequence>
+
+                    <!-- IntrBkSttlmAmt with attribute -->
+                    <xs:element name="IntrBkSttlmAmt">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:decimal">
+                            <xs:attribute name="Ccy" type="xs:string" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <!-- SttlmInf block -->
+                    <xs:element name="SttlmInf">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SttlmMtd" minOccurs="0">
                             <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:maxLength value="32" />
-                                    <xs:pattern value="[0-9]+" /> <!-- Optional: enforce numeric-only -->
-                                </xs:restriction>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="CLRG"/>
+                                <xs:enumeration value="MADN"/>
+                              </xs:restriction>
                             </xs:simpleType>
-                        </xs:element>
-                        <xs:element name="<OrgnlMsgNmId" type="xs:string"></xs:element>
-                        <xs:element name="OrgnlCreDtTm" type="xs:dateTime"></xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="TxInfAndSts">
-                <xs:complexType>
-                    <xs:element name="OrgnlTxRef">
-                        <xs:complexType>
-                            <xs:elemement name="IntrBkSttlmAmt">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <!-- Accepts numeric values (e.g., 57, 123.45)
- -->
-                                        <xs:extension base="xs:decimal"> 
-                                            <xs:attribute name="Ccy" type="xs:string" use="required"></xs:attribute>
-                                        </xs:extension>
-
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:elemement>
-                        </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ClrSys" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Prtry">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:enumeration value="IPS"/>
+                                      <xs:enumeration value="PSA"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
                     </xs:element>
+
+                    <!-- PmtTpInf block -->
+                    <xs:element name="PmtTpInf">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SvcLvl">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Prtry">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:enumeration value="P2PI"/>
+                                      <xs:enumeration value="P2BT"/>
+                                      <xs:enumeration value="B2PT"/>
+                                      <xs:enumeration value="B2BT"/>
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                  </xs:sequence>
                 </xs:complexType>
-            </xs:element>
-        </xs:complexType>
-    </xs:element>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 
 </xs:schema>
