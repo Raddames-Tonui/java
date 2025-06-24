@@ -1,4 +1,4 @@
-# Java Interfaces - README
+# Java Interfaces
 
 This document introduces Java Interfaces in a simple-to-advanced manner, breaking down core concepts, use cases, syntax, and special interface types like functional interfaces. Examples and metaphors are used to ensure clarity for both beginners and advanced learners.
 

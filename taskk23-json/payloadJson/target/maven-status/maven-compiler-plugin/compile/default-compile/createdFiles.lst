@@ -1,0 +1,5 @@
+com/example/payload/NokBeneficiaryNomineeInfo.class
+com/example/payload/Payload.class
+com/example/payload/RegPayloadWrapper.class
+com/example/payload/Account.class
+com/example/payloadJson/App.class

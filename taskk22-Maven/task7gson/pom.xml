@@ -10,6 +10,7 @@
   <name>task7gson</name>
   <url>http://maven.apache.org</url>
 
+  <!-- Optional but recommended: Specify Java version (eg. Now I am using java 21)-->
   <properties>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
