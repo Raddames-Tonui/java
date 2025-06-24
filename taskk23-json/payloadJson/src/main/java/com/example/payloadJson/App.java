@@ -21,7 +21,7 @@ public class App {
 
             // Access sample data
             System.out.println("Action: " + regPayloadWrapper.getAction());
-            System.out.println("First Name: " + regPayloadWrapper.getPayload().getFirstName());
+            System.out.println("First Name: " + regPayloadWrapper.getPayload());
             System.out.println("City: " + regPayloadWrapper.getPayload().getCity());
 
         } catch (Exception e) {
