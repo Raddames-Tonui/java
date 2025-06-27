@@ -22,8 +22,8 @@ public class Threadss {
         A a = new A();
         B b = new B();
 
-        // a.start();
-        // b.start();
+        a.start();
+        b.start();
 
         // GET NAME OF THE THREAD USING 
         // a) USING THREAD CLASS

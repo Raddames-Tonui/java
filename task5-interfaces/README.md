@@ -199,19 +199,70 @@ public class User implements Cloneable {
 
 From Java 8 onwards, interfaces can have:
 
-* **Default Methods** - Provide a default implementation
-
+### *a) Default Methods*
+Provide a default implementation
+A method in an interface with a body.
+Allows interfaces to evolve without breaking existing code.
 ```java
-default void log(String msg) {
-    System.out.println("Logging: " + msg);
+interface Animal {
+    default void breathe() {
+        System.out.println("Breathing...");
+    }
 }
+
+class Dog implements Animal {
+    // Inherits breathe() by default
+}
+
 ```
 
-* **Static Methods** - Belong to the interface itself
+### b) *Static Methods*
+Belongs to the interface itself, not to instances or implementing classes.
+
+
 
 ```java
-static boolean isNull(String s) {
-    return s == null;
+interface Utility {
+    static int add(int a, int b) {
+        return a + b;
+    }
+}
+
+
+int result = Utility.add(5, 10);  // Call directly from the interface
+
+```
+
+| Feature            | `default` method   | `static` method             |
+| ------------------ | ------------------ | --------------------------- |
+| Can be overridden? | ✅ Yes              | ❌ No                        |
+| Needs an instance? | ✅ Yes (via object) | ❌ No (called via interface) |
+| Added in           | Java 8             | Java 8                      |
+| Accessed via       | Object (of class)  | Interface name              |
+
+
+```java
+interface Logger {
+    // Default Method
+    default void logInfo(String msg){
+        System.out.println("INFO: " + msg);
+    }
+    // Static Method
+    static void logError(String msg){
+        System.out.println("ERROR: "+ msg)
+    }
+}
+
+class MyApp implements Logger{
+
+}
+
+public class Main{
+    public static void main(String[] args){
+        MyApp app = new MyApp();
+        app.logInfo("Starting app...") // Default Method
+        Logger.logError("Somethingwent wrong") // Uses static Mehod. Not it has been called via the instance name "Logger"
+    }
 }
 ```
 
