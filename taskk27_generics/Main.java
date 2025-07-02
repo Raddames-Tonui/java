@@ -1,70 +1,46 @@
-import java.util.Arrays;
-import java.util.List;
+package taskk27_Generics;
 
-import generics.*;
-import extras.*;
+import taskk27_Generics.a.Item;
+import taskk27_Generics.a.KeyValue;
+import taskk27_Generics.b.ArrayPrinter;
+import taskk27_Generics.c.DataHandler;
+import taskk27_Generics.c.IntegerHandler;
+import taskk27_Generics.c.StringHandler;
 
-
-// Main Test
 public class Main {
     public static void main(String[] args) {
-        // ✅ 1. Item<T>
-        Item<String> stringItem = new Item<>("Java Generics");
-        Item<Integer> intItem = new Item<>(2025);
-        
-        stringItem.displayItem();
-        intItem.displayItem();
+    //  generic class Item<T>
+    Item<String> stringItem = new Item<>("Java");
+    Item<Integer> integerItem = new Item<>(2000);
 
-        System.out.println();
+        System.out.println("\n----------Generic Class---------");
+    stringItem.display();
+    integerItem.display();
 
-        // ✅ 2. printArrayContents(T[] array)
-        String[] names = {"Alice", "Bob", "Charlie"};
-        Integer[] numbers = {10, 20, 30};
+//  generic method printArrayContents
+    String[] words = {"Sons", "Of", "Zebedee", };
+    Integer[] numbers = {1,3,2,5,15,23};
 
-        System.out.println("String Array:");
-        GenericUtils.printArrayContents(names);
+        System.out.println("\n---------Generic Arrays-----------");
+    ArrayPrinter.printArrayContents(words);
+    ArrayPrinter.printArrayContents(numbers);
 
-        System.out.println("Integer Array:");
-        GenericUtils.printArrayContents(numbers);
-        System.out.println();
-
-        // ✅ 3. DataHandler<T> interface
+//    generic interface and its implementations
         DataHandler<String> stringHandler = new StringHandler();
-        DataHandler<Integer> intHandler = new IntegerHandler();
-        stringHandler.processData("helloWorld");
-        intHandler.processData(4);
-        intHandler.processData(0);
-        System.out.println();
+        System.out.println("\n--------Generic Interface---------");
+        stringHandler.processData("hello raddames!");
 
-        // ✅ 4. Calculator<T extends Number>
-        Calculator<Integer> squareCalc = new Calculator<>(5);
-        squareCalc.displaySquare();
-        System.out.println();
-        Calculator<Double> circleCalc = new Calculator<>(7.0);
-        circleCalc.displayCircle();
-        System.out.println();
-        Calculator<Float> bothCalc = new Calculator<>(4.5f);
-        bothCalc.displaySquare();
-        bothCalc.displayCircle();
-        System.out.println();
+        DataHandler<Integer> integerDataHandler = new IntegerHandler();
+        integerDataHandler.processData(4);
+        integerDataHandler.processData(0);
 
-        // ✅ 5. Wildcards <? extends T>
-        List<Double> doubleList = Arrays.asList(1.1, 2.2, 3.3);
-        WildcardPrinter.printNumberList(doubleList);
 
-         // ✅ 6. Create a Fluent object for String
-        // Method chaining allows setting multiple properties in one line
-        Fluent<String> fluentString = new Fluent<String>()
-            .set("Hello, Fluent World!")  // Set value
-            .label("Greeting");           // Set label
+//        Key Value
+        KeyValue<String, Integer> kv1 = new KeyValue<>("age" , 30);
+        KeyValue<Integer, String> kv2 = new KeyValue<>(101, "User101");
 
-        fluentString.display(); // Output: Greeting: Hello, Fluent World!
-
-        // Create a Fluent object for Integer
-        Fluent<Integer> fluentInt = new Fluent<Integer>()
-            .set(42)              // Set integer value
-            .label("The Answer"); // Set label
-
-        fluentInt.display(); // Output: The Answer: 42
+        System.out.println("\n--------Generic KEY VALUE--------");
+        kv1.display();
+        kv2.display();
     }
 }
