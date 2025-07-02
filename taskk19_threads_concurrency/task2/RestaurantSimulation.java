@@ -32,8 +32,9 @@ class Customer implements Runnable {
     public void run() {
         try {
             Order order = new Order();
-            queue.put(order); // waits if queue is full
             System.out.println("Customer placed order: #" + order.getId());
+            queue.put(order); // waits if queue is full
+
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt(); // restore interrupted state
         }

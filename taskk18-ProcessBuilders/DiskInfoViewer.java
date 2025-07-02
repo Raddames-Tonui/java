@@ -21,7 +21,7 @@ public class DiskInfoViewer {
 
             // Capture and print output
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            System.out.println("Disk Information:\n------------------");
+                System.out.println("Disk Information:\n------------------");
             reader.lines().forEach(System.out::println);
 
         } catch (Exception e) {
