@@ -31,4 +31,22 @@ public class BookReportService {
         }
         return bookReportRepo.findBooksBySubcategory(subcategoryId);
     }
+
+    // 1.3 Books by author
+    public List<BookReportDTO> getBooksByAuthor(Long authorId) throws SQLException {
+        if (!bookReportRepo.authorExists(authorId)) {
+            throw new NotFoundException("Author not found");
+        }
+        return bookReportRepo.findBooksByAuthor(authorId);
+    }
+
+    // 1.4 Books add by librarian
+    public List<BookReportDTO> getBooksByLibrarian(Long librarianId) throws SQLException {
+        if (!bookReportRepo.librarianExists(librarianId)) {
+            throw new NotFoundException("Librarian not found");
+        }
+        return bookReportRepo.findBooksByLibrarian(librarianId);
+    }
+
+
 }

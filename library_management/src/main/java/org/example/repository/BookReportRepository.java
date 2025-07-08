@@ -19,7 +19,7 @@ public class BookReportRepository {
     public List<BookReportDTO> findBooksByCategory(Long categoryId) throws SQLException {
         String query = """
             SELECT c.catalog_id, c.book_name, c.isbn, c.book_language, 
-                   c.published_year, c.book_type, sc.subcategory_name,  sc.subcategory_description
+                   c.published_year, c.book_type, sc.subcategory_name
             FROM catalog c
             JOIN rack r ON c.rack_id = r.rack_id
             JOIN subcategory sc ON r.subcategory_id = sc.subcategory_id
@@ -39,8 +39,7 @@ public class BookReportRepository {
                         rs.getString("book_language"),
                         rs.getInt("published_year"),
                         rs.getString("book_type"),
-                        rs.getString("subcategory_name"),
-                        rs.getString("subcategory_description")
+                        rs.getString("subcategory_name")
                 ));
             }
             return books;
@@ -50,7 +49,7 @@ public class BookReportRepository {
     public List<BookReportDTO> findBooksBySubcategory(Long subcategoryId) throws SQLException {
         String query = """
             SELECT c.catalog_id, c.book_name, c.isbn, c.book_language, 
-                   c.published_year, c.book_type, sc.subcategory_name,  sc.subcategory_description
+                   c.published_year, c.book_type, sc.subcategory_name
             FROM catalog c
             JOIN rack r ON c.rack_id = r.rack_id
             JOIN subcategory sc ON r.subcategory_id = sc.subcategory_id
@@ -69,8 +68,8 @@ public class BookReportRepository {
                         rs.getString("book_language"),
                         rs.getInt("published_year"),
                         rs.getString("book_type"),
-                        rs.getString("subcategory_name"),
-                        rs.getString("subcategory_description")));
+                        rs.getString("subcategory_name")
+                ));
             }
             return books;
         }
@@ -93,4 +92,75 @@ public class BookReportRepository {
             return false;
         }
     }
+
+    // 1.3 Books by author
+    public List<BookReportDTO> findBooksByAuthor(Long authorId) throws SQLException {
+        String query = """
+        SELECT c.catalog_id, c.book_name, c.isbn, c.book_language,
+               c.published_year, c.book_type, sc.subcategory_name
+        FROM catalog c
+        JOIN rack r ON c.rack_id = r.rack_id
+        JOIN subcategory sc ON r.subcategory_id = sc.subcategory_id
+        JOIN book_author ba ON ba.catalog_id = c.catalog_id
+        WHERE ba.author_id = ?
+    """;
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setLong(1, authorId);
+            ResultSet rs = stmt.executeQuery();
+            List<BookReportDTO> books = new ArrayList<>();
+            while (rs.next()) {
+                books.add(new BookReportDTO(
+                        rs.getLong("catalog_id"),
+                        rs.getString("book_name"),
+                        rs.getString("isbn"),
+                        rs.getString("book_language"),
+                        rs.getInt("published_year"),
+                        rs.getString("book_type"),
+                        rs.getString("subcategory_name")
+                ));
+            }
+            return books;
+        }
+    }
+
+    public boolean authorExists(Long authorId) {
+        return recordExists("SELECT COUNT(*) FROM author WHERE author_id = ?", authorId);
+    }
+
+    // 1.4 Books by librarian
+    public List<BookReportDTO> findBooksByLibrarian(Long librarianId) throws SQLException {
+        String query = """
+        SELECT c.catalog_id, c.book_name, c.isbn, c.book_language,
+               c.published_year, c.book_type, sc.subcategory_name
+        FROM catalog c
+        JOIN rack r ON c.rack_id = r.rack_id
+        JOIN subcategory sc ON r.subcategory_id = sc.subcategory_id
+        WHERE c.librarian_id = ?
+    """;
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setLong(1, librarianId);
+            ResultSet rs = stmt.executeQuery();
+            List<BookReportDTO> books = new ArrayList<>();
+            while (rs.next()) {
+                books.add(new BookReportDTO(
+                        rs.getLong("catalog_id"),
+                        rs.getString("book_name"),
+                        rs.getString("isbn"),
+                        rs.getString("book_language"),
+                        rs.getInt("published_year"),
+                        rs.getString("book_type"),
+                        rs.getString("subcategory_name")
+                ));
+            }
+            return books;
+        }
+    }
+
+    public boolean librarianExists(Long librarianId) {
+        return recordExists("SELECT COUNT(*) FROM librarian WHERE librarian_id = ?", librarianId);
+    }
+
+
 }

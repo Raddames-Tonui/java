@@ -40,10 +40,17 @@ public class RouterHandler implements HttpHandler {
         pathTemplateHandler.add("/api/reports/category", exchange ->
                 exchange.dispatch(() -> reportController.getBooksByCategory(exchange))
         );
-
         pathTemplateHandler.add("/api/reports/subcategory", exchange ->
                 exchange.dispatch(() -> reportController.getBooksBySubcategory(exchange))
         );
+        pathTemplateHandler.add("/api/reports/author", exchange ->
+                exchange.dispatch(() -> reportController.getBooksByAuthor(exchange))
+        );
+        pathTemplateHandler.add("/api/reports/librarian", exchange ->
+                exchange.dispatch(() -> reportController.getBooksByLibrarian(exchange))
+        );
+
+
     }
 
     @Override

@@ -80,7 +80,7 @@ public class Main {
         // Register a shutdown hook to clean up resources
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("""
-                                           McMillan Library
+                                              McMillan Library
                                        Shutting down... Closing DB pool.
                             """
             );

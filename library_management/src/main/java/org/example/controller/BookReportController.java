@@ -60,4 +60,48 @@ public class BookReportController {
             }
         });
     }
+
+    // 1.3 Books by author
+    public void getBooksByAuthor(HttpServerExchange exchange) {
+        exchange.dispatch(() -> {
+            Deque<String> authorParam = exchange.getQueryParameters().get("authorId");
+            if (authorParam == null || authorParam.isEmpty()) {
+                JsonResponseUtil.sendJson(exchange, 400, new ApiResponse<>("authorId is required"));
+                return;
+            }
+
+            try {
+                Long authorId = Long.parseLong(authorParam.getFirst());
+                List<BookReportDTO> result = reportService.getBooksByAuthor(authorId);
+                JsonResponseUtil.sendJson(exchange, 200, new ApiResponse<>("Books retrieved Successfully", result));
+            } catch (NotFoundException e) {
+                JsonResponseUtil.sendJson(exchange, 404, new ApiResponse<>(e.getMessage()));
+            } catch (Exception e) {
+                JsonResponseUtil.sendJson(exchange, 500, new ApiResponse<>("Error: " + e.getMessage()));
+            }
+        });
+    }
+
+    // 1.4
+    public void getBooksByLibrarian(HttpServerExchange exchange) {
+        exchange.dispatch(() -> {
+            Deque<String> librarianParam = exchange.getQueryParameters().get("librarianId");
+            if (librarianParam == null || librarianParam.isEmpty()) {
+                JsonResponseUtil.sendJson(exchange, 400, new ApiResponse<>("librarianId is required"));
+                return;
+            }
+
+            try {
+                Long librarianId = Long.parseLong(librarianParam.getFirst());
+                List<BookReportDTO> result = reportService.getBooksByLibrarian(librarianId);
+                JsonResponseUtil.sendJson(exchange, 200, new ApiResponse<>("Books retrieved Successfully", result));
+            } catch (NotFoundException e) {
+                JsonResponseUtil.sendJson(exchange, 404, new ApiResponse<>(e.getMessage()));
+            } catch (Exception e) {
+                JsonResponseUtil.sendJson(exchange, 500, new ApiResponse<>("Error: " + e.getMessage()));
+            }
+        });
+    }
+
+
 }
