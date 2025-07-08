@@ -10,5 +10,5 @@ public record BookReportDTO(
         String bookLanguage,
         int publishedYear,
         String bookType,
-        String subcategoryName
-) {}
+        String subcategoryName,
+        String subcategoryDescription) {}
