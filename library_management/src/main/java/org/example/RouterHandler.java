@@ -5,6 +5,7 @@ import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.server.handlers.PathTemplateHandler;
 import io.undertow.util.Headers;
+import org.example.controller.BookReportController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,10 +29,22 @@ public class RouterHandler implements HttpHandler {
 
     public RouterHandler(Connection conn) {
         this.pathTemplateHandler = new PathTemplateHandler();
-        // Root path handler for base welcome message
-        pathTemplateHandler.add("/", this::handleRoot);
-    }
 
+        // Controllers
+        BookReportController reportController = new BookReportController(conn);
+
+        // Welcome route
+        pathTemplateHandler.add("/", this::handleRoot);
+
+        // Reports
+        pathTemplateHandler.add("/api/reports/category", exchange ->
+                exchange.dispatch(() -> reportController.getBooksByCategory(exchange))
+        );
+
+        pathTemplateHandler.add("/api/reports/subcategory", exchange ->
+                exchange.dispatch(() -> reportController.getBooksBySubcategory(exchange))
+        );
+    }
 
     @Override
     public void handleRequest(HttpServerExchange exchange) {

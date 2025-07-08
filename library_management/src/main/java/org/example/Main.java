@@ -27,7 +27,7 @@ public class Main {
                 .getResourceAsStream("config.properties")) {
 
             if (input == null) {
-                System.err.println("config.properties not found in resources");
+                logger.error("config.properties not found in resources");
                 return;
             }
 
@@ -74,22 +74,12 @@ public class Main {
 
             );
         } catch (SQLException e) {
-            System.err.println("DB connection failed" + e.getMessage());
+            logger.error("DB connection failed{}", e.getMessage());
         }
 
         // Register a shutdown hook to clean up resources
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("""
-                                           .---.           .---.
-                                          /     \\\\  __   //     \\\\
-                                         / /     \\\\(o o)//     \\ \\\\
-                                        //////   '\\\\ ^ //'      \\\\\\\\
-                                       //// / // :     :   \\\\  \\ \\\\\\\\
-                                      // /   /  /`----'\\      \\   \\ \\\\
-                                                \\\\..////
-                                =================UU====UU====================
-                                                 '//||||\\\\`
-                                                   ''''
                                            McMillan Library
                                        Shutting down... Closing DB pool.
                             """
