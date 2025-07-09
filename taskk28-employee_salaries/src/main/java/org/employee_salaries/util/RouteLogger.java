@@ -1,4 +1,4 @@
-package org.online_exams.util;
+package org.employee_salaries.util;
 
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;

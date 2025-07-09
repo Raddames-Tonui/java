@@ -121,45 +121,47 @@ public class ReportRepository {
 
     public List<PupilExamRankingDTO> getAllExamScores() throws SQLException {
         String sql = """
-                 SELECT
-                        s.exam_id,
-                        e.exam_title,
-                        p.pupil_id,
-                        CONCAT(p.pupil_firstname, ' ', p.pupil_lastname) AS full_name,
-                        SUM(q.question_marks) AS total_marks,
-                        SUM(CASE WHEN c.choice_is_correct THEN q.question_marks ELSE 0 END) AS marks_scored
-                    FROM submissions s
-                    JOIN pupils p ON p.pupil_id = s.pupil_id
-                    JOIN exams e ON e.exam_id = s.exam_id
-                    JOIN answers a ON a.submission_id = s.submission_id
-                    JOIN questions q ON q.question_id = a.question_id
-                    JOIN choices c ON c.choice_id = a.choice_id
-                    GROUP BY s.exam_id, e.exam_title, p.pupil_id, full_name
-                    ORDER BY s.exam_id, marks_scored DESC
-                """;
+        SELECT
+            s.exam_id,
+            e.exam_title,
+            p.pupil_id,
+            CONCAT(p.pupil_firstname, ' ', p.pupil_lastname) AS full_name,
+            SUM(q.question_marks) AS total_marks,
+            SUM(CASE WHEN c.choice_is_correct THEN q.question_marks ELSE 0 END) AS marks_scored
+        FROM submissions s
+        JOIN pupils p ON p.pupil_id = s.pupil_id
+        JOIN exams e ON e.exam_id = s.exam_id
+        JOIN answers a ON a.submission_id = s.submission_id
+        JOIN questions q ON q.question_id = a.question_id
+        JOIN choices c ON c.choice_id = a.choice_id
+        GROUP BY s.exam_id, e.exam_title, p.pupil_id, full_name
+        ORDER BY s.exam_id, marks_scored DESC
+    """;
 
-        List <PupilExamRankingDTO> pupils = new ArrayList<>();
-        try(PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery()){
+        List<PupilExamRankingDTO> pupils = new ArrayList<>();
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             Long currentExamId = null;
             int rank = 0;
 
-            while(rs.next()){
+            while (rs.next()) {
                 Long examId = rs.getLong("exam_id");
 
-                if(!currentExamId.equals(examId)){
+                // FIX: avoid NullPointerException by calling equals on examId instead of currentExamId
+                if (!examId.equals(currentExamId)) {
                     currentExamId = examId;
                     rank = 1;
-                }else {
-                    rank ++;
+                } else {
+                    rank++;
                 }
 
                 int total = rs.getInt("total_marks");
                 int scored = rs.getInt("marks_scored");
                 double percentage = total == 0 ? 0.0 : ((double) scored / total) * 100;
 
-                pupils.add(new PupilExamRankingDTO(
+                PupilExamRankingDTO dto = new PupilExamRankingDTO(
                         examId,
                         rs.getString("exam_title"),
                         rs.getLong("pupil_id"),
@@ -168,10 +170,12 @@ public class ReportRepository {
                         scored,
                         percentage,
                         rank
-                ));
-            }
-        };
-        return pupils;
+                );
 
+                pupils.add(dto);
+            }
+        }
+
+        return pupils;
     }
 }

@@ -1,4 +1,4 @@
-package org.online_exams.util;
+package org.employee_salaries.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.undertow.server.HttpServerExchange;
@@ -22,20 +22,18 @@ public class JsonResponseUtil {
      */
     public static void sendJson(HttpServerExchange exchange, int statusCode, Object payload) {
         try {
-            // Serialize payload object to a JSON string
-            String json = objectMapper.writeValueAsString(payload);
-
-            // Set response status and content type
-            exchange.setStatusCode(statusCode);
-            exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json");
-
-            // Send the JSON response body
-            exchange.getResponseSender().send(json);
-
+            if (!exchange.isComplete()) {
+                String json = objectMapper.writeValueAsString(payload);
+                exchange.setStatusCode(statusCode);
+                exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json");
+                exchange.getResponseSender().send(json);
+            }
         } catch (Exception e) {
-            // In case of serialization failure, return a simple JSON error message
-            exchange.setStatusCode(500);
-            exchange.getResponseSender().send("{\"message\":\"JSON serialization error\"}");
+            if (!exchange.isComplete()) {
+                exchange.setStatusCode(500);
+                exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json");
+                exchange.getResponseSender().send("{\"message\":\"JSON serialization error\"}");
+            }
         }
     }
 }

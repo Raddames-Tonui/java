@@ -1,4 +1,4 @@
-package org.online_exams.db;
+package org.employee_salaries.db;
 
 
 import com.zaxxer.hikari.HikariConfig;

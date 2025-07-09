@@ -1,8 +1,7 @@
-package org.online_exams;
+package org.employee_salaries;
 
 import io.undertow.Undertow;
-import org.online_exams.RouterHandler;
-import org.online_exams.db.DBConnection;
+import org.employee_salaries.db.DBConnection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Main entry point: boots Undertow server on port 8000.
+ * Main entry point: boots Undertow server on port from .properties
  * Before starting, tests DB connection.
  */
 public class Main {
@@ -42,10 +41,10 @@ public class Main {
         String host = config.getProperty("server.host");
 
 
-/**
- * DB Connection is created once
- * then passed to all handlers via the RouterHandler
- */
+        /**
+         * DB Connection is created once
+         * then passed to all handlers via the RouterHandler
+         */
         try {
             Connection conn = DBConnection.getConnection();
             System.out.println("Database connection successful");
@@ -67,6 +66,7 @@ public class Main {
                                                  '//||||\\\\`
                                                    ''''
                                            UNDERTOW PHOENIX RISES
+                                           EMPLOYEE SALARIES API
                             """ +
                     "\n      Undertow server started at " +
                     "\n      Database connected Successfully." +
@@ -83,23 +83,11 @@ public class Main {
             System.out.println("""
                            
                                            UNDERTOW PHOENIX RISES
+                                           EMPLOYEE SALARIES API
                                        Shutting down... Closing DB pool.
-                            """
+                               """
             );
             DBConnection.closePool();
         }));
     }
 }
-
-/**
- * CONNECTION is a class from JDBC (Java Database Connectivity) that represents an active link to your database.
- It lets your Java app:
- Connect to a DB like PostgreSQL, MySQL, etc.
-
- Send SQL queries (SELECT, INSERT, UPDATE, etc.)
-
- Start and manage transactions
-
- Prepare statements and avoid SQL injection
-
- */

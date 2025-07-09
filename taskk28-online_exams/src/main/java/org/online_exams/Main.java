@@ -1,7 +1,6 @@
 package org.online_exams;
 
 import io.undertow.Undertow;
-import org.online_exams.RouterHandler;
 import org.online_exams.db.DBConnection;
 
 import org.slf4j.Logger;
@@ -12,6 +11,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
+
 
 /**
  * Main entry point: boots Undertow server on port 8000.

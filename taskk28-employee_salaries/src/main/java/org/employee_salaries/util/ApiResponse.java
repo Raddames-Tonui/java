@@ -1,4 +1,4 @@
-package org.online_exams.util;
+package org.employee_salaries.util;
 
 public class ApiResponse<T> {
     private final String message;
