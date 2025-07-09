@@ -1,0 +1,47 @@
+<configuration>
+
+    <!--
+        Define a console appender.
+        This means logs will be written to the system console (STDOUT).
+    -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+
+        <!--
+            Define how each log message should be formatted.
+            - %d{HH:mm:ss.SSS} → timestamp in hours:minutes:seconds.millis
+            - [%thread] → the name of the thread that produced the log
+            - %-5level → the log level (INFO, ERROR...) padded to 5 characters
+            - %logger{36} → the logger name, shortened to 36 chars max
+            - %msg → the actual log message
+            - %n → newline
+        -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        Set the root logger (default for all classes) to INFO level.
+        This means INFO, WARN, and ERROR will be logged,
+        but DEBUG and TRACE will be ignored unless specified otherwise.
+    -->
+    <root level="info">
+
+        <!--
+            Attach the STDOUT appender to the root logger.
+            So all log messages that meet the level threshold will print to the console.
+        -->
+        <appender-ref ref="STDOUT" />
+    </root>
+
+<!--    <logger name="org.online_exams.service" level="debug" />-->
+
+</configuration>
+
+<!--10:24:51.123 [main] INFO  org.online_exams.controller.PupilController - Pupil created successfully.
+        10:24:51.123 → time of log
+        [main] → thread
+        INFO → log level
+        org.online_exams.controller.PupilController → logger class
+        Pupil created successfully. → message
+-->
