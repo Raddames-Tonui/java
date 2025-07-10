@@ -39,7 +39,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        Instant start = Instant.now();
+
 
         Path path = Paths.get(ClassLoader.getSystemResource("member_details.csv").toURI());
         List<String> lines = Files.readAllLines(path);
@@ -66,9 +66,10 @@ public class Main {
             }
         });
 
+
         System.out.println("🔍 Total records loaded: " +
                 (maleList.size() + femaleList.size() + unknownList.size() + invalidList.size()));
-
+        Instant start = Instant.now();
         try (SXSSFWorkbook wb = new SXSSFWorkbook(100);
              FileOutputStream fos = new FileOutputStream("processed_members.xlsx")) {
 
