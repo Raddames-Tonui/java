@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME) // Keep annotation at runtime for reflection
 @Target(ElementType.FIELD) // Only applied to fields
 public @interface Description{
-    String info();
+    String info() default "Hello world";
 }

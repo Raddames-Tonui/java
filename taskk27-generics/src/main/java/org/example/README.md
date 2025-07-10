@@ -181,11 +181,62 @@ This is common in:
 * Config objects
 
 ```java
-class Fluent<T> {
+public class Fluent<T> {
     T value;
-    Fluent<T> set(T val) { this.value = val; return this; }
-    T get() { return value; }
+
+    // Fluent setter
+    public Fluent<T> set(T val) {
+        this.value = val;
+        return this;
+    }
+
+    // Getter
+    public T get() {
+        return value;
+    }
+
+    // Entry point for testing
+    public static void main(String[] args) {
+        // Fluent with String
+        Fluent<String> stringFluent = new Fluent<>();
+        stringFluent.set("Hello, Fluent!");
+        System.out.println("String value: " + stringFluent.get());
+        
+        
+
+        // Fluent with Integer and method chaining
+        Fluent<Integer> intFluent = new Fluent<>();
+        intFluent.set(42).set(100);
+        System.out.println("Integer value: " + intFluent.get());
+
+        // Fluent with custom object
+        Fluent<Person> personFluent = new Fluent<>();
+        personFluent.set(new Person("Alice", 30));
+        System.out.println("Person: " + personFluent.get());
+    }
 }
+// Output:
+// String value: Hello, Fluent!
+// Integer value: 100
+
+// Custom class for demonstration
+class Person {
+    String name;
+    int age;
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // toString override for pretty printing
+    public String toString() {
+        return name + " (" + age + ")";
+    }
+}
+// Output:
+// Person: Alice (30)
+
 ```
 
 * Supports fluent APIs and builder patterns by returning the current object.

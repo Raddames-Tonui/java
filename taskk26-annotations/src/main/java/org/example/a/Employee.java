@@ -2,7 +2,7 @@ package org.example.a;
 
 public class Employee {
 
-    @Description(info = "Type of identification document (e.g., ID, Passport)")
+    @Description
     private int identificationType;
 
     @Description(info = "Relationship to the member (e.g., MOTHER, SPOUSE)")
